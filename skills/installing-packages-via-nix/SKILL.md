@@ -17,6 +17,10 @@ Any time you're about to add a CLI tool, language runtime, or library to a machi
 
 ## How to do it
 
+Check whether the current project has its own devShell first (a `flake.nix` with a `devShells` output, or a `shell.nix`/`default.nix` used with `nix-shell`). If it does, ask the user whether the package should go there (project-scoped, shared with collaborators via the flake) or in their personal nix-config (machine-wide, available outside this project) — don't assume; the two serve different purposes and only the user knows which one they want here.
+
+If there's no project devShell, or the user chose personal nix-config, proceed as below.
+
 Locate the repo — if you're Claude Code, check memory first (a reference memory entry records its path per machine); If you can't find it, ask where it lives rather than falling back to another package manager.
 
 For where to add the package, which command builds/verifies, and which command activates (and who runs it), follow that repo's own `CLAUDE.md` / `AGENTS.md` — don't rely on this skill for those mechanics, and don't guess if the repo docs are silent on something; ask.
